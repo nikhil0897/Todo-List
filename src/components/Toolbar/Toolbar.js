@@ -8,15 +8,17 @@ class Toolbar extends Component {
     itemName: ""
   }
 
-  // static propTypes = {
-  //   onAddHandler: PropTypes.func
-  // };
-
-
   inputHandler(value) {
     this.setState({
       itemName: value
     });
+  }
+
+  clickHandler(e) {
+    this.props.addButtonHandler(this.state.itemName);
+    var presentState={...this.state};
+    presentState.itemName="";
+    this.setState(presentState);
   }
 
   render() {
@@ -25,15 +27,19 @@ class Toolbar extends Component {
         <input
           className="toolbar-section__input"
           type="text"
-          placeholder="Type the item"
+          placeholder="Click to quickly add a task"
           value={this.state.itemName}
           onChange={e => {
             this.inputHandler(e.target.value);
           }}
         />
-        <i class="fas fa-arrow-circle-down fa-2x" style={{ color: '#a4a4a4', cursor: 'pointer', marginRight: '10px' }}
-          disabled={!this.state.itemName}
-          onClick={(event) => this.props.addButtonHandler(this.state.itemName)}></i>
+        <div className="upArrowButton" onClick={(event) => this.clickHandler(event)}>
+          <i class="fas fa-arrow-up " style={{
+            bottom: '11px', right: '10px', color: 'white', position: 'absolute', color: '#a4a4a4'}}
+            disabled={!this.state.itemName}
+          ></i>
+        </div>
+        
       </div>
     );
   }

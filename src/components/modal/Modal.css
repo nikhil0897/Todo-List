@@ -1,0 +1,5 @@
+.reminderModal {
+    position: fixed;
+    z-index: 90;
+    background: white;
+}

@@ -5,7 +5,7 @@ import Dashboard from "../components/dashboard/Dashboard";
 
 export class Layout extends Component {
   state = {
-    showNavigationBar: false,
+    showNavigationBar: true,
     currentCategory: "personal"
   };
   toggleNavigation = () => {
@@ -19,7 +19,7 @@ export class Layout extends Component {
 
   render() {
     return (
-      <div>
+      <div style={{disply: 'inline-block'}}>
         <Header toggleNavigation={this.toggleNavigation} />
         {this.state.showNavigationBar ? <NavigationBarContent 
           updateCategory={this.updateCategory}

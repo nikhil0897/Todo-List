@@ -1,23 +1,23 @@
 .SideBarLinked {
   color: #0080ff;
-  text-align: center;
-  font-size: 18px;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+  margin-left: 27px;
 }
-.NavigationSideBar {  
-  padding: 15px;
+.NavigationSideBar {
+  padding: 10px;
   background: #eee;
-  text-align: center;
 }
 .CategoryList {
   font-size: 18px;
-
 }
 .SideMenu {
   margin: 0;
   color: #a4a4a4;
   margin-top: 45px;
   background: white;
-  height: 650px;
+  height: 625px;
   z-index: 80;
   background-color: white;
   box-sizing: border-box;
@@ -31,6 +31,7 @@
 
 .NavigationBarMenu {
   padding-inline-start: 0px;
+  margin-top: 0;
 }
 
 .NavigationBarMenu li {
@@ -41,9 +42,9 @@
 .NavigationBarMenu li:hover {
   color: #3c3c3c;
   text-decoration: none;
-  background: #eee;
+  background: #eeeeee;
   border-radius: 4px;
 }
 #EditButton:hover {
-    color: #3c3c3c;
+  color: #3c3c3c;
 }

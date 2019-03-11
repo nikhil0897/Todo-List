@@ -6,11 +6,11 @@ export class NavigationBarContent extends Component {
     return (
       <div className="SideMenu">
         <div className="NavigationSideBar">
-          <a className="SideBarLinked" href="/" style={{ marginLeft: "22px" }}>
-            <i class="far fa-check-circle" style={{ marginRight: "15px" }} />
+          <a className="SideBarLinked" href="/">
+            <i class="far fa-check-circle" style={{ marginRight: "20px", color: 'grey'}} />
             MY LISTS
           </a>
-          <i class="fas fa-pen" style={{ marginLeft: "35px" }} id="EditButton"/>
+          <i class="fas fa-pen" style={{ marginRight: "15px", float: 'right' }} id="EditButton"/>
         </div>
         <div className="CategoryList">
           <ul className="NavigationBarMenu" style={{ listStyle: "none" }}>

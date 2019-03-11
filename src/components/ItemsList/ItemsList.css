@@ -1,13 +1,16 @@
 .items-section {
-    width: 400px;
-    margin-top: 90px;
+    width: 445px;
+    margin-top: 156px;
     margin-right: 0px;
-    height: 400px;;
+    height: 472px;;
     overflow: auto;
+    border-radius: 5px;
     padding-top: 10px;
     margin-left: 20px;
     background: white;
     display: inline-block;
+    position: relative;
+    box-shadow: 0 1px 2px 0 #d4d4d5;
 }
 
 /* Transition styles */
@@ -40,6 +43,7 @@
 }
 
 .TaskDay {
+    color: #454545;
     cursor: pointer;
     padding: 2px;
     margin: 0;
