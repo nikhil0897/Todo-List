@@ -10,7 +10,8 @@ class ItemList extends Component {
       return this.props.currentState[list].map(eachItem => {
         return (
           <Item
-            name={eachItem.name}
+            key={eachItem.id}
+            eachItem={eachItem}
             onDelete={() => {
               this.props.onDeleteHandler(eachItem.id);
             }}

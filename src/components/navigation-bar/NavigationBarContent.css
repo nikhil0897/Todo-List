@@ -37,6 +37,8 @@
 .NavigationBarMenu li {
   padding: 10px;
   padding-left: 75px;
+  font-size: 16px;
+  line-height: 1.5;
 }
 
 .NavigationBarMenu li:hover {
@@ -45,6 +47,10 @@
   background: #eeeeee;
   border-radius: 4px;
 }
+.NavigationBarMenu li::after {
+  background: #eeeeee;
+}
+
 #EditButton:hover {
   color: #3c3c3c;
 }

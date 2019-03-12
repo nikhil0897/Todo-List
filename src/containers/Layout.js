@@ -13,7 +13,6 @@ export class Layout extends Component {
   };
 
   updateCategory = category => {
-    console.log(category);
     this.setState({ currentCategory: category });
   };
 

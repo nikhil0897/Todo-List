@@ -35,7 +35,7 @@ function getModalStyle() {
 export class Reminder extends Component {
   state = {
     open: false,
-    selectedDate: new Date("2014-08-18T21:11:54")
+    selectedDate: new Date("2019-03-12T00:00:00")
   };
 
   handleOpen = () => {
@@ -49,7 +49,6 @@ export class Reminder extends Component {
     this.setState({ selectedDate: date });
   };
   save = () => {
-    // console.log(this.state.selectedDate);
     this.props.setReminder(this.state.selectedDate);
     this.handleClose();
   };
@@ -57,10 +56,9 @@ export class Reminder extends Component {
   render() {
     const { classes } = this.props;
     const { selectedDate } = this.state;
-
     return (
       <div className="showReminder">
-        <h2>{this.props.state.currentTask}</h2>
+        <h2>{this.props.eachItem.name}</h2>
         <div
           className="addReminder"
           style={{ marginLeft: "24px" }}
@@ -76,9 +74,7 @@ export class Reminder extends Component {
           onClose={this.handleClose}
         >
           <div style={getModalStyle()} className={classes.paper}>
-            <Typography variant="h8" id="modal-title">
-              Add date and time for completion
-            </Typography>
+            <h4>Add date and time for completion</h4>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
               <Grid container className={classes.grid} justify="space-around">
                 <DatePicker

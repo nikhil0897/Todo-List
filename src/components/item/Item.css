@@ -34,3 +34,15 @@
 .clicked {
   text-decoration: line-through;
 }
+
+.timeDisplay {
+  border-radius: 10px;
+  font-size: 10px;
+  width: 65px;
+  height: 20px;
+  text-align: center;
+}
+
+.timeDisplay:hover {
+  border: 1px solid #d4d4d5;
+}

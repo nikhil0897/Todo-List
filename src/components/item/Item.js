@@ -18,16 +18,20 @@ class item extends Component {
       nameStyles += " clicked";
     }
     return (
-      <div
-        className="item-section"
-        onClick={this.props.showAddReminder.bind(this, this.props.name)}
-      >
+      <div className="item-section">
         <input
           type="checkbox"
           className="item-section__check"
           onChange={this.itemCheckedHandler}
         />
-        <span className={nameStyles}> {this.props.name} </span>
+        <span
+          className={nameStyles}
+          onClick={this.props.showAddReminder.bind(this, this.props.eachItem)}
+        >
+          {this.props.eachItem.name}
+          &nbsp;&nbsp;
+        </span>
+        <div className="timeDisplay">{this.props.eachItem.reminder}</div>
         <i
           class="fas fa-trash"
           onClick={this.props.onDelete}

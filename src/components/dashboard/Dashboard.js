@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import ItemsList from "../items-list/ItemsList";
 import "./Dashboard.css";
 import Reminder from "../reminder/Reminder";
+import noTask from "./no-task.png";
 
 export class Dashboard extends Component {
   state = {
@@ -9,25 +10,16 @@ export class Dashboard extends Component {
     idIndicator: 1,
     currentTask: "",
     currentCategory: "",
+    dateTime: null,
     allTasks: {
       personal: {
-        today: [
-          {
-            name: "This is a todo",
-            reminder: ""
-          }
-        ],
+        today: [],
         tomorrow: [],
         someday: [],
         upcoming: []
       },
       work: {
-        today: [
-          {
-            name: "This is official",
-            reminder: ""
-          }
-        ],
+        today: [],
         tomorrow: [],
         someday: [],
         upcoming: []
@@ -49,7 +41,7 @@ export class Dashboard extends Component {
       name: value,
       category: category,
       completed: false,
-      reminder: ""
+      reminder: null
     });
     if (category === "personal") {
       this.setState({
@@ -75,7 +67,6 @@ export class Dashboard extends Component {
     let index = -1;
     let indexReq = null;
     updateList["today"].forEach(eachTask => {
-      // console.log(eachTask)
       index++;
       if (eachTask.id === id) {
         indexReq = index;
@@ -102,26 +93,40 @@ export class Dashboard extends Component {
     }
   };
 
-  // toggleModal = () => {
-  //   this.setState({showModal: !this.state.showModal});
-  // }
   setReminder = dateTime => {
-    // console.log(dateTime);
-    let id = this.state.idIndicator;
-    let type = this.props.category;
-    this.setState({
-      // todos: this.state.allTasks[type].today.map(todo => {
-      //   if (todo.id === id) {
-      //     todo.reminder = JSON.stringify(dateTime);
-      //   }
-      //   return todo;
-      // })
+    let id = this.state.currentTask.id;
+    let category = this.props.category;
+    let updateList = { ...this.state.allTasks[category] };
+    let index = -1;
+    let indexReq = null;
+    updateList["today"].forEach(eachTask => {
+      index++;
+      if (eachTask.id === id) {
+        indexReq = index;
+      }
     });
+    updateList["today"][indexReq].reminder =
+      dateTime.toString().split(" ")[0] +
+      ", " +
+      dateTime.toString().split(" ")[4];
+
+    if (category === "personal") {
+      this.setState({
+        personal: updateList
+      });
+    } else if (category === "work") {
+      this.setState({
+        work: updateList
+      });
+    } else if (category === "groceryList") {
+      this.setState({
+        groceryList: updateList
+      });
+    }
   };
 
-  showAddReminder = name => {
-    console.log(this.state.category);
-    this.setState({ currentTask: name });
+  showAddReminder = eachItem => {
+    this.setState({ currentTask: eachItem });
   };
 
   render() {
@@ -134,15 +139,14 @@ export class Dashboard extends Component {
           onDeleteHandler={this.onDeleteHandler}
           showAddReminder={this.showAddReminder}
         />
-        {/* <div>
-        <Toolbar
-          // onAddHandler={this.addItemHandler}
-          addButtonHandler={this.props.addButtonHandler}
-        />
-      </div>   */}
         {this.state.currentTask ? (
-          <Reminder setReminder={this.setReminder} state={this.state} />
-        ) : null}
+          <Reminder
+            setReminder={this.setReminder}
+            eachItem={this.state.currentTask}
+          />
+        ) : (
+          <img src={noTask} alt="Logo" id="noTaskImage" />
+        )}
       </div>
     );
   }
