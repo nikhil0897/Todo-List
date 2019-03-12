@@ -1,25 +1,24 @@
 import React, { Component } from "react";
-import Item from "../Item/Item";
+import Item from "../item/Item";
 import Toolbar from "../Toolbar/Toolbar";
 
 import "./ItemsList.css";
 
 class ItemList extends Component {
-
   render() {
-    const itemsList = (Object.keys(this.props.currentState).map( list => {
-        return this.props.currentState[list].map(eachItem => {
-          return (
-            <Item
-              name={eachItem.name}
-              onDelete={() => {
-                this.props.onDeleteHandler(eachItem.id);
-              }}
-            />
-          );
-        })
-      
-    }));
+    const itemsList = Object.keys(this.props.currentState).map(list => {
+      return this.props.currentState[list].map(eachItem => {
+        return (
+          <Item
+            name={eachItem.name}
+            onDelete={() => {
+              this.props.onDeleteHandler(eachItem.id);
+            }}
+            showAddReminder={this.props.showAddReminder}
+          />
+        );
+      });
+    });
 
     return (
       <div className="items-section">
@@ -41,7 +40,7 @@ class ItemList extends Component {
             // onAddHandler={this.addItemHandler}
             addButtonHandler={this.props.addButtonHandler}
           />
-        </div> 
+        </div>
       </div>
     );
   }

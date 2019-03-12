@@ -11,10 +11,11 @@
   width: 390px;
   margin-bottom: 20px;
   border: 1px solid white;
+  cursor: pointer;
 }
 .item-section:hover {
-    border-color: #0080ff;
-    box-shadow: 0 1px 1px 0 white, 0 0 0 1px white;
+  border-color: #0080ff;
+  box-shadow: 0 1px 1px 0 white, 0 0 0 1px white;
 }
 
 .item-section__check {
@@ -30,6 +31,6 @@
   overflow-wrap: break-word;
 }
 
-.clicked{
+.clicked {
   text-decoration: line-through;
 }

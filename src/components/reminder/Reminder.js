@@ -1,14 +1,112 @@
 import React, { Component } from "react";
 import "./Reminder.css";
+import Modal from "@material-ui/core/Modal";
+import { withStyles } from "@material-ui/core/styles";
+import Typography from "@material-ui/core/Typography";
+import Grid from "@material-ui/core/Grid";
+import DateFnsUtils from "@date-io/date-fns";
+import {
+  MuiPickersUtilsProvider,
+  TimePicker,
+  DatePicker
+} from "material-ui-pickers";
+import "date-fns";
+import Button from "@material-ui/core/Button";
+
+const styles = theme => ({
+  paper: {
+    position: "absolute",
+    width: theme.spacing.unit * 50,
+    backgroundColor: theme.palette.background.paper,
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing.unit * 4,
+    outline: "none"
+  }
+});
+
+function getModalStyle() {
+  return {
+    top: `50%`,
+    left: `50%`,
+    transform: `translate(-50%, -50%)`
+  };
+}
 
 export class Reminder extends Component {
+  state = {
+    open: false,
+    selectedDate: new Date("2014-08-18T21:11:54")
+  };
+
+  handleOpen = () => {
+    this.setState({ open: true });
+  };
+
+  handleClose = () => {
+    this.setState({ open: false });
+  };
+  handleDateChange = date => {
+    this.setState({ selectedDate: date });
+  };
+  save = () => {
+    // console.log(this.state.selectedDate);
+    this.props.setReminder(this.state.selectedDate);
+    this.handleClose();
+  };
+
   render() {
+    const { classes } = this.props;
+    const { selectedDate } = this.state;
+
     return (
       <div className="showReminder">
-        <div className="addReminder" style={{ marginLeft: "24px" }} onClick={this.props.toggleModal}>
+        <h2>{this.props.state.currentTask}</h2>
+        <div
+          className="addReminder"
+          style={{ marginLeft: "24px" }}
+          onClick={this.handleOpen}
+        >
           <i class="far fa-clock" style={{ paddingTop: "20px" }} />
           <p>Add Reminder</p>
         </div>
+        <Modal
+          aria-labelledby="simple-modal-title"
+          aria-describedby="simple-modal-description"
+          open={this.state.open}
+          onClose={this.handleClose}
+        >
+          <div style={getModalStyle()} className={classes.paper}>
+            <Typography variant="h8" id="modal-title">
+              Add date and time for completion
+            </Typography>
+            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+              <Grid container className={classes.grid} justify="space-around">
+                <DatePicker
+                  margin="normal"
+                  label="Date picker"
+                  value={selectedDate}
+                  onChange={this.handleDateChange}
+                />
+                <TimePicker
+                  margin="normal"
+                  label="Time picker"
+                  value={selectedDate}
+                  onChange={this.handleDateChange}
+                />
+              </Grid>
+              <Button
+                onClick={this.save}
+                color="primary"
+                className={classes.button}
+              >
+                Save
+              </Button>
+              <Button onClick={this.handleClose} className={classes.button}>
+                Cancel
+              </Button>
+            </MuiPickersUtilsProvider>
+          </div>
+        </Modal>
         <div className="addReminder">
           <i class="far fa-user" style={{ paddingTop: "20px" }} />
           <p>Share Task</p>
@@ -22,4 +120,4 @@ export class Reminder extends Component {
   }
 }
 
-export default Reminder;
+export default withStyles(styles)(Reminder);

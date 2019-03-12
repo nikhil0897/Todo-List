@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 
-import './Toolbar.css';
+import "./Toolbar.css";
 
 class Toolbar extends Component {
-  state={
+  state = {
     itemName: ""
-  }
+  };
 
   inputHandler(value) {
     this.setState({
@@ -16,8 +16,8 @@ class Toolbar extends Component {
 
   clickHandler(e) {
     this.props.addButtonHandler(this.state.itemName);
-    var presentState={...this.state};
-    presentState.itemName="";
+    var presentState = { ...this.state };
+    presentState.itemName = "";
     this.setState(presentState);
   }
 
@@ -33,13 +33,22 @@ class Toolbar extends Component {
             this.inputHandler(e.target.value);
           }}
         />
-        <div className="upArrowButton" onClick={(event) => this.clickHandler(event)}>
-          <i class="fas fa-arrow-up " style={{
-            bottom: '11px', right: '10px', color: 'white', position: 'absolute', color: '#a4a4a4'}}
+        <div
+          className="upArrowButton"
+          onClick={event => this.clickHandler(event)}
+        >
+          <i
+            class="fas fa-arrow-up "
+            style={{
+              bottom: "11px",
+              right: "10px",
+              color: "white",
+              position: "absolute",
+              color: "#a4a4a4"
+            }}
             disabled={!this.state.itemName}
-          ></i>
+          />
         </div>
-        
       </div>
     );
   }

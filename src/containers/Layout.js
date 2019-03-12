@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import Header from '../components/header/Header';
-import NavigationBarContent from "../components/navigation-bar/navigation-content/NavigationBarContent";
+import Header from "../components/header/Header";
+import NavigationBarContent from "../components/navigation-bar/NavigationBarContent";
 import Dashboard from "../components/dashboard/Dashboard";
 
 export class Layout extends Component {
@@ -12,19 +12,19 @@ export class Layout extends Component {
     this.setState({ showNavigationBar: !this.state.showNavigationBar });
   };
 
-  updateCategory = (category) => {
+  updateCategory = category => {
     console.log(category);
-    this.setState({currentCategory: category});
-  }
+    this.setState({ currentCategory: category });
+  };
 
   render() {
     return (
-      <div style={{disply: 'inline-block'}}>
+      <div style={{ disply: "inline-block" }}>
         <Header toggleNavigation={this.toggleNavigation} />
-        {this.state.showNavigationBar ? <NavigationBarContent 
-          updateCategory={this.updateCategory}
-        /> : null}
-        <Dashboard category={this.state.currentCategory}/>
+        {this.state.showNavigationBar ? (
+          <NavigationBarContent updateCategory={this.updateCategory} />
+        ) : null}
+        <Dashboard category={this.state.currentCategory} />
       </div>
     );
   }
