@@ -8,14 +8,14 @@ class Toolbar extends Component {
   };
 
   inputHandler(e, value) {
-    if(e.keyCode === 13) 
-      this.clickHandler(e)
+    if (e.keyCode === 13) this.clickHandler(e);
     this.setState({
       itemName: value
     });
   }
 
   clickHandler(e) {
+    e.preventDefault();
     this.props.addButtonHandler(this.state.itemName);
     var presentState = { ...this.state };
     presentState.itemName = "";
@@ -25,15 +25,17 @@ class Toolbar extends Component {
   render() {
     return (
       <div className="toolbar-section">
-        <input
-          className="toolbar-section__input"
-          type="text"
-          placeholder="Click to quickly add a task"
-          value={this.state.itemName}
-          onChange={e => {
-            this.inputHandler(e, e.target.value);
-          }}
-        />
+        <form onSubmit={event => this.clickHandler(event)}>
+          <input
+            className="toolbar-section__input"
+            type="text"
+            placeholder="Click to quickly add a task"
+            value={this.state.itemName}
+            onChange={e => {
+              this.inputHandler(e, e.target.value);
+            }}
+          />
+        </form>
         <div
           className="upArrowButton"
           onClick={event => this.clickHandler(event)}
@@ -43,7 +45,6 @@ class Toolbar extends Component {
             style={{
               bottom: "11px",
               right: "10px",
-              color: "white",
               position: "absolute",
               color: "#a4a4a4"
             }}
